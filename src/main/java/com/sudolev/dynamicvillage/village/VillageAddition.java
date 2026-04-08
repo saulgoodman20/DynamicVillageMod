@@ -11,17 +11,18 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 import net.minecraft.core.registries.Registries;
-import net.minecraftforge.event.server.ServerAboutToStartEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = VillageLife.MODID)
+@EventBusSubscriber(modid = VillageLife.MODID)
 public class VillageAddition {
+    // Updated to use the new fromNamespaceAndPath method
     private static final ResourceKey<StructureProcessorList> EMPTY_PROCESSOR_LIST_KEY = ResourceKey.create(
-            Registries.PROCESSOR_LIST, new ResourceLocation("minecraft", "empty"));
+            Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath("minecraft", "empty"));
 
     private static void addBuildingToPool(RegistryAccess registryAccess,
                                           ResourceLocation poolRL,
@@ -52,69 +53,71 @@ public class VillageAddition {
     @SubscribeEvent
     public static void addNewVillageBuilding(final ServerAboutToStartEvent event) {
         RegistryAccess registryAccess = event.getServer().registryAccess();
+
+        // Updated all of these to use ResourceLocation.parse() for single-string namespaces
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/plains/houses"),
+                ResourceLocation.parse("minecraft:village/plains/houses"),
                 "dynamicvillage:plains/plains_mech", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/plains/houses"),
+                ResourceLocation.parse("minecraft:village/plains/houses"),
                 "dynamicvillage:plains/plains_miner", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/plains/houses"),
+                ResourceLocation.parse("minecraft:village/plains/houses"),
                 "dynamicvillage:plains/plains_train", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/plains/houses"),
+                ResourceLocation.parse("minecraft:village/plains/houses"),
                 "dynamicvillage:plains/plains_plumber", 20);
 
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/desert/houses"),
+                ResourceLocation.parse("minecraft:village/desert/houses"),
                 "dynamicvillage:desert/desert_mech", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/desert/houses"),
+                ResourceLocation.parse("minecraft:village/desert/houses"),
                 "dynamicvillage:desert/desert_miner", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/desert/houses"),
+                ResourceLocation.parse("minecraft:village/desert/houses"),
                 "dynamicvillage:desert/desert_train", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/desert/houses"),
+                ResourceLocation.parse("minecraft:village/desert/houses"),
                 "dynamicvillage:desert/desert_plumber", 20);
 
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/taiga/houses"),
+                ResourceLocation.parse("minecraft:village/taiga/houses"),
                 "dynamicvillage:taiga/taiga_mech", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/taiga/houses"),
+                ResourceLocation.parse("minecraft:village/taiga/houses"),
                 "dynamicvillage:taiga/taiga_miner", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/taiga/houses"),
+                ResourceLocation.parse("minecraft:village/taiga/houses"),
                 "dynamicvillage:taiga/taiga_train", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/taiga/houses"),
+                ResourceLocation.parse("minecraft:village/taiga/houses"),
                 "dynamicvillage:taiga/taiga_plumber", 20);
 
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/snowy/houses"),
+                ResourceLocation.parse("minecraft:village/snowy/houses"),
                 "dynamicvillage:snowy/snowy_mech", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/snowy/houses"),
+                ResourceLocation.parse("minecraft:village/snowy/houses"),
                 "dynamicvillage:snowy/snowy_miner", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/snowy/houses"),
+                ResourceLocation.parse("minecraft:village/snowy/houses"),
                 "dynamicvillage:snowy/snowy_train", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/snowy/houses"),
+                ResourceLocation.parse("minecraft:village/snowy/houses"),
                 "dynamicvillage:snowy/snowy_plumber", 20);
 
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/savanna/houses"),
+                ResourceLocation.parse("minecraft:village/savanna/houses"),
                 "dynamicvillage:savanna/savanna_mech", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/savanna/houses"),
+                ResourceLocation.parse("minecraft:village/savanna/houses"),
                 "dynamicvillage:savanna/savanna_miner", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/savanna/houses"),
+                ResourceLocation.parse("minecraft:village/savanna/houses"),
                 "dynamicvillage:savanna/savanna_train", 20);
         addBuildingToPool(registryAccess,
-                new ResourceLocation("minecraft:village/savanna/houses"),
+                ResourceLocation.parse("minecraft:village/savanna/houses"),
                 "dynamicvillage:savanna/savanna_plumber", 20);
     }
 }

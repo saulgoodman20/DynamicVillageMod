@@ -1,0 +1,41 @@
+modLoader="javafml"
+# NeoForge 1.21.1 uses loader version 4+
+loaderVersion="[4,)"
+license="GPL-3.0"
+issueTrackerURL="https://github.com/sudolev/DynamicVillageMod/issues"
+
+[[mods]]
+modId="dynamicvillage"
+version="0.3"
+displayName="Create: Dynamic Village"
+displayURL="https://sudolev.github.io/DynamicVillageMod/"
+logoFile="icon.png"
+credits="Ben001109, Fatasiangamer"
+authors="sudolev"
+description='''
+Create: Dynamic Village is an expansion to Create that adds a host of Create-mod village professions & structures.
+'''
+
+# Replaced 'forge' with 'neoforge' and bumped to version 21.1
+[[dependencies.dynamicvillage]]
+modId="neoforge"
+mandatory=true
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+# Bumped Minecraft to 1.21.1
+[[dependencies.dynamicvillage]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.21.1,1.22)"
+ordering="NONE"
+side="BOTH"
+
+# Bumped Create to version 6.0+
+[[dependencies.dynamicvillage]]
+modId="create"
+mandatory=true
+versionRange="[6.0.0,)"
+ordering="NONE"
+side="BOTH"

@@ -1,33 +1,39 @@
 package com.sudolev.dynamicvillage;
 
 import com.sudolev.dynamicvillage.villager.ModVillagers;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-// The value here should match an entry in the META-INF/mods.toml file
+// The value here should match an entry in the META-INF/neoforge.neoforge.mods.toml file
 @Mod(VillageLife.MODID)
 public class VillageLife {
     public static final String MODID = "dynamicvillage";
 
-    public VillageLife() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    // NeoForge 1.21.1 now passes the modEventBus directly into the constructor!
+    public VillageLife(IEventBus modEventBus) {
 
+        // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
+        // Register our custom registries
         ModVillagers.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.register(this);
+        // Register ourselves for server and other game events we are interested in
+        NeoForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(ModVillagers::registerPOIs);
+        // Enqueue work for thread-safe execution
+        event.enqueueWork(() -> {
+            ModVillagers.registerPOIs();
+        });
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -36,7 +42,7 @@ public class VillageLife {
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = MODID, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {

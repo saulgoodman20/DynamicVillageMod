@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VillageLifeMod.main.iml" filepath="$PROJECT_DIR$/.idea/modules/VillageLifeMod.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VillageLifeMod.test.iml" filepath="$PROJECT_DIR$/.idea/modules/VillageLifeMod.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DynamicVillageMod.main.iml" filepath="$PROJECT_DIR$/.idea/modules/DynamicVillageMod.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DynamicVillageMod.test.iml" filepath="$PROJECT_DIR$/.idea/modules/DynamicVillageMod.test.iml" />
     </modules>
   </component>
 </project>

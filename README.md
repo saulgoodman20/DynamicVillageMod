@@ -11,6 +11,8 @@
 
 **Create: Dynamic Village is an expansion to Create that adds a host of Create-mod village professions & structures.**
 
+NOW UPDATED TO NEOFORGE 1.21.1 - GET IT FROM RELEASES PAGE
+
 
 ![banner](https://github.com/sudolev/DynamicVillageMod/assets/61996958/40b915c2-4707-4376-a1c0-5ec6a5a55bcc)
 
